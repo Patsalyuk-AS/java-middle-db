@@ -11,11 +11,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PerformerDTO {
-
-    @NotNull
-    private Long id;
+public class UpdateTrackDTO {
 
     @NotNull
     private String name;
+
+    private Integer year;
+
+    private String length;
+
+    private Integer numberOfPlays;
+
+    private Long genreId;
+
+    private Long albumId;
+
+    private Long performerId;
 }

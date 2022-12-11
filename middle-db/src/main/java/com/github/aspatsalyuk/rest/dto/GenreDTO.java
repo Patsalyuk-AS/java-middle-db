@@ -14,5 +14,8 @@ import javax.validation.constraints.NotNull;
 public class GenreDTO {
 
     @NotNull
+    private Long id;
+
+    @NotNull
     private String name;
 }

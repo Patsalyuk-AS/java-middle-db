@@ -14,11 +14,16 @@ import javax.validation.constraints.NotNull;
 public class TrackDTO {
 
     @NotNull
+    private Long id;
+
+    @NotNull
     private String name;
 
     private Integer year;
 
     private String length;
+
+    private Integer numberOfPlays;
 
     private String genre;
 

@@ -1,6 +1,7 @@
 package com.github.aspatsalyuk.rest.controller;
 
 import com.github.aspatsalyuk.rest.dto.TrackDTO;
+import com.github.aspatsalyuk.rest.dto.UpdateTrackDTO;
 import com.github.aspatsalyuk.service.TrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -43,5 +44,18 @@ public class TrackController {
     ResponseEntity<Void> deleteTrackById(@PathVariable(ID) @NotNull Long id) {
         trackService.deleteTrackById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<TrackDTO> insertTrack(@RequestBody @NotNull UpdateTrackDTO updateTrackDTO) {
+        return ResponseEntity.ok(trackService.insertTrack(updateTrackDTO));
+    }
+
+    @PutMapping(
+            value = ID_URL,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    ResponseEntity<TrackDTO> updateTrack(@PathVariable(ID) @NotNull Long id, @RequestBody @NotNull UpdateTrackDTO updateTrackDTO) {
+        return ResponseEntity.ok(trackService.updateTrack(id, updateTrackDTO));
     }
 }

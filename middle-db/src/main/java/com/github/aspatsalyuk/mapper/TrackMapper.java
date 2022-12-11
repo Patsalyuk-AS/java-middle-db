@@ -2,8 +2,8 @@ package com.github.aspatsalyuk.mapper;
 
 import com.github.aspatsalyuk.domain.entity.Track;
 import com.github.aspatsalyuk.rest.dto.TrackDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import com.github.aspatsalyuk.rest.dto.UpdateTrackDTO;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -16,4 +16,9 @@ public interface TrackMapper {
     TrackDTO toDTO(Track track);
 
     List<TrackDTO> toDTOList(List<Track> trackList);
+
+    Track fromUpdateTrackDTO(UpdateTrackDTO updateTrackDTO);
+
+    @BeanMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL)
+    void updateTrackFromUpdateTrackDTO(UpdateTrackDTO updateTrackDTO, @MappingTarget Track updatedTrack);
 }

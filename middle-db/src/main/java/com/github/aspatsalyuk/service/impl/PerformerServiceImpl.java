@@ -9,6 +9,7 @@ import com.github.aspatsalyuk.service.PerformerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static com.github.aspatsalyuk.dictionary.ErrorDescription.TRACK_NOT_FOUND;
@@ -31,8 +32,9 @@ public class PerformerServiceImpl implements PerformerService {
     }
 
     @Override
+    @Transactional
     public PerformerDTO updatePerformer(Long id, PerformerDTO performerDTO) {
-        Performer performer = performerRepository.findById(id).orElseThrow(
+        Performer performer = performerRepository.findPerformerByIdForUpdate(id).orElseThrow(
                 () -> new MiddleDBException(TRACK_NOT_FOUND.getStatusCode(), TRACK_NOT_FOUND.getErrorCode(), TRACK_NOT_FOUND.getDescription())
         );
         performerMapper.updateFromDTO(performerDTO, performer);

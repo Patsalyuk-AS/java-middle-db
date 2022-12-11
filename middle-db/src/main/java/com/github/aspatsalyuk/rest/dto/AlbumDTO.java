@@ -13,6 +13,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class AlbumDTO {
 
+    @NotNull
+    private Long id;
+
    @NotNull
     private String name;
 }
