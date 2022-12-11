@@ -1,0 +1,27 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation "com.oracle.ojdbc:ojdbc8:${ojdbc8Version}"
+    implementation "com.oracle.ojdbc:orai18n:${ojdbc8Version}"
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation "org.projectlombok:lombok:${lombockVersion}"
+    implementation "org.apache.commons:commons-lang3:${apacheCommonsLang3Version}"
+    implementation "org.apache.commons:commons-collections4:${apacheCommonsCollections4Version}"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+compileJava {
+    options.compilerArgs += [
+            '-Amapstruct.defaultComponentModel=spring',
+            '-Amapstruct.defaultInjectionStrategy=constructor'
+    ]
+}
+
+task prepareKotlinBuildScriptModel {
+
+}

@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springBootVersion = '2.6.4'
+        lombockVersion = '1.18.24'
+        mapstructVersion = "1.5.3.Final"
+        lombokMapstructBinding = "0.2.0"
+        ojdbc8Version = "19.3.0.0"
+        apacheCommonsCollections4Version = "4.4"
+        apacheCommonsLang3Version = "3.11"
+        junitVersion = '4.13.2'
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
+allprojects {
+    group 'com.github.aspatsalyuk'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
+
+
+    repositories {
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombockVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombockVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombockVersion}", "org.mapstruct:mapstruct-processor:${mapstructVersion}", "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBinding}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombockVersion}", "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    }
+}

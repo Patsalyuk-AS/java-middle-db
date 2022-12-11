@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /middle-db
+logging:
+  level:
+    sql: debug
+spring:
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    username: ${USERNAME}
+    password: ${PASSWORD}
+    url: ${URL}
